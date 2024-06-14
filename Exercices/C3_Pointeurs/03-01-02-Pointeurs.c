@@ -1,25 +1,18 @@
-#include "stdio.h"
 
-int main() {
 
-    char nom[50];
-    int age = 0;
+int main(){
+    char nom[255];
+    int age;
 
-    char *ptr_nom = nom;
+    char *ptr_nom = &nom;
     int *ptr_age = &age;
 
     char **ptr_ptr_nom = &ptr_nom;
-    int **ptr_ptr_age = &ptr_age;
+    int **ptr_ptr_age = &ptr_age
 
-    printf("NOM : ");
-    scanf("%s", *ptr_ptr_nom);
-    printf("\n");
+    **ptr_ptr_nom = "Hello Baby";
+    **ptr_ptr_age = 42;
 
-    printf("AGE : ");
-    scanf("%d", *ptr_ptr_age);
-    printf("\n");
-
-    printf("NOM : %s, AGE : %d\n", nom, age);
-
-
+    printf("Nom : %s, Age : %d", nom, age); 
+     
 }

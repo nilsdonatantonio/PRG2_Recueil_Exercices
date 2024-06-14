@@ -1,9 +1,8 @@
-#include "stdio.h"
+#include <stdio.h>
 
-int main() {
-    int nombre = 4;
-    int *ptr = NULL;
-    ptr = &nombre;
+int main(){
+    int nombre = 42;
+    int *ptr_to_int = &nombre;
 
-    printf("%d\n", *ptr);
+    printf("Nombre : %d", *ptr_to_int);
 }
