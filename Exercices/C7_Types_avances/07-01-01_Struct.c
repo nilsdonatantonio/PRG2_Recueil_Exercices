@@ -2,40 +2,57 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAXLEN 256
+#define MAXITEM 10
+
 typedef struct {
-    char title[100];
-    char author[50];
-    int pub_year;
-    int nbr_copies;
-} Livre;
+    char title[MAXLEN];
+    char author[MAXLEN];
+    int  publishing_year;
+    int stock;
+} Book;
 
+Book add_book(char *title, char *author, int pub_year, int stock) {
+    Book book;
+    strcpy(book.title, title);
+    strcpy(book.author, author);
+    book.publishing_year = pub_year;
+    book.stock = stock;
 
-Livre add_new_book(char *title, char *author, int pub_year, int nbr_copies) {
-    Livre l;
-    strcpy(l.title, title);
-    strcpy(l.author, author);
-    l.pub_year = pub_year;
-    l.nbr_copies = nbr_copies;
-
-    return l;
+    return book;
 }
 
-void update_inventory(Livre *l, int update) {
-    l->nbr_copies += update;
+void show_book(const Book book) {
+    printf("!-----------Entry-----------!\n");
+    printf("Title           : %s\n", book.title);
+    printf("Author          : %s\n", book.author);
+    printf("Publishing year : %d\n", book.publishing_year);
+    printf("In stock        : %d\n", book.stock);
+    printf("\n\n");
 }
 
-void show_book_info(Livre *l) {
-    printf("Titre        : %s\n", l->title);
-    printf("Author       : %s\n", l->author);
-    printf("Year of pub. : %4d\n", l->pub_year);
-    printf("Nbr in stock : %d\n", l->nbr_copies);
+void borrow_book(Book *book) {
+    book->stock -= 1;
 }
 
-int main(int argc, char *argv[]) {
-    Livre livre = add_new_book("Le Petit Prince", "Antoine de Saint-Exupéry", 1943, 30);
-    show_book_info(&livre);
-    update_inventory(&livre, -5);
-    printf("\n");
-    show_book_info(&livre);
+void return_book(Book *book) {
+    book->stock += 1;
+}
+
+int main() {
+    Book inventory[MAXITEM];
+
+    inventory[0] = add_book("Factocrum", "Charles Bukowski", 1948, 30);
+    show_book(inventory[0]);
+
+    borrow_book(&(inventory[0]));
+
+    show_book(inventory[0]);
+
+    return_book(&(inventory[0]));
+
+    show_book(inventory[0]);
+
     return 0;
+
 }
