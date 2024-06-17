@@ -1,20 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h>
 
-int main() {
+int main(){
     char array[60];
 
-    char *ptr = NULL;
-    char *strs[3];
-
-    int i;
+    char *ptr;
+    char strs[3];
 
     ptr = array;
+
     sprintf(ptr, "%s", "Mercredi");
 
     strs[2] = ptr;
 
-    ptr += 28;
+    ptr +=28;
 
     sprintf(ptr, "%s", "Lundi");
 
@@ -26,8 +23,8 @@ int main() {
 
     strs[1] = ptr;
 
-    for (i = 0; i < 3; ++i) {
+
+    for(int i = 0; i <= 3; ++i){
         printf("%s\n", strs[i]);
     }
-
 }
